@@ -15,7 +15,6 @@ function getWeather() {
     .then(data => {
         let currentWeather:string = ((data.main.temp - 273.15).toFixed(2)).toString()
         weather.innerHTML = `${currentWeather}ºC`;
-        console.log(data);
     });
 }
 
@@ -27,7 +26,7 @@ const options = {
     }
 }
 
-function getJoke() {
+function getGeneralJoke() {
     fetch('https://icanhazdadjoke.com/', options)
         .then(response => response.json())
         .then(data => {
@@ -37,7 +36,26 @@ function getJoke() {
         });
 }
 
+function getChuckNorrisJoke() {
+    fetch('https://api.chucknorris.io/jokes/random')
+        .then(response => response.json())
+        .then(data => {
+            currentJoke = data.value;
+            jokeOutput.innerHTML = currentJoke;
+            jokeVoted = false;
+        })
+}
+
+function getJoke() {
+    if(Math.random() < 0.5){
+        getGeneralJoke()
+    } else {
+        getChuckNorrisJoke();
+    }
+}
+
 getJoke();
+
 
 interface ReportAcudit {
     joke: string,

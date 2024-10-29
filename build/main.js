@@ -13,7 +13,6 @@ function getWeather() {
         .then(function (data) {
         var currentWeather = ((data.main.temp - 273.15).toFixed(2)).toString();
         weather.innerHTML = "".concat(currentWeather, "\u00BAC");
-        console.log(data);
     });
 }
 getWeather();
@@ -22,7 +21,7 @@ var options = {
         'Accept': 'application/json'
     }
 };
-function getJoke() {
+function getGeneralJoke() {
     fetch('https://icanhazdadjoke.com/', options)
         .then(function (response) { return response.json(); })
         .then(function (data) {
@@ -30,6 +29,23 @@ function getJoke() {
         jokeOutput.innerHTML = currentJoke;
         jokeVoted = false;
     });
+}
+function getChuckNorrisJoke() {
+    fetch('https://api.chucknorris.io/jokes/random')
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+        currentJoke = data.value;
+        jokeOutput.innerHTML = currentJoke;
+        jokeVoted = false;
+    });
+}
+function getJoke() {
+    if (Math.random() < 0.5) {
+        getGeneralJoke();
+    }
+    else {
+        getChuckNorrisJoke();
+    }
 }
 getJoke();
 var reportAcudits = [];
