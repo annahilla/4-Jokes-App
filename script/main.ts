@@ -1,4 +1,5 @@
 const weather = document.getElementById('weather') as HTMLElement;
+const weatherIcon = document.getElementById('weatherIcon') as HTMLElement;
 const jokeOutput= document.getElementById('jokeOutput') as HTMLElement;
 const btn = document.getElementById('btn') as HTMLElement;
 const voteBtns = document.querySelectorAll('.vote-joke-btn');
@@ -13,8 +14,20 @@ function getWeather() {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=e725b8ec710517d47e1e7f0439394bb4')
     .then(response => response.json())
     .then(data => {
-        let currentWeather:string = ((data.main.temp - 273.15).toFixed(2)).toString()
-        weather.innerHTML = `${currentWeather}ºC`;
+        let currentTemperature:string = ((data.main.temp - 273.15).toFixed(2)).toString();
+        let currentWeather = data.weather[0].main;
+
+        weather.innerHTML = `${currentTemperature}ºC`;
+
+        if(currentWeather === "Rain" || currentWeather === "Thunderstorm" || currentWeather === "Drizzle") {
+            weatherIcon.innerHTML = "&#9748;";
+        } else if(currentWeather === "Snow") {
+            weatherIcon.innerHTML = "&#9924;";
+        } else if(currentWeather === "Clear") {
+            weatherIcon.innerHTML = "&#127774;";
+        } else {
+            weatherIcon.innerHTML = "&#9925";
+        }
     });
 }
 

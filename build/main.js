@@ -1,5 +1,6 @@
 "use strict";
 var weather = document.getElementById('weather');
+var weatherIcon = document.getElementById('weatherIcon');
 var jokeOutput = document.getElementById('jokeOutput');
 var btn = document.getElementById('btn');
 var voteBtns = document.querySelectorAll('.vote-joke-btn');
@@ -11,8 +12,21 @@ function getWeather() {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=e725b8ec710517d47e1e7f0439394bb4')
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        var currentWeather = ((data.main.temp - 273.15).toFixed(2)).toString();
-        weather.innerHTML = "".concat(currentWeather, "\u00BAC");
+        var currentTemperature = ((data.main.temp - 273.15).toFixed(2)).toString();
+        var currentWeather = data.weather[0].main;
+        weather.innerHTML = "".concat(currentTemperature, "\u00BAC");
+        if (currentWeather === "Rain" || currentWeather === "Thunderstorm" || currentWeather === "Drizzle") {
+            weatherIcon.innerHTML = "&#9748;";
+        }
+        else if (currentWeather === "Snow") {
+            weatherIcon.innerHTML = "&#9924;";
+        }
+        else if (currentWeather === "Clear") {
+            weatherIcon.innerHTML = "&#127774;";
+        }
+        else {
+            weatherIcon.innerHTML = "&#9925";
+        }
     });
 }
 getWeather();
