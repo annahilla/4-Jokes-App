@@ -1,3 +1,4 @@
+const weather = document.getElementById('weather') as HTMLElement;
 const jokeOutput= document.getElementById('jokeOutput') as HTMLElement;
 const btn = document.getElementById('btn') as HTMLElement;
 const voteBtns = document.querySelectorAll('.vote-joke-btn');
@@ -7,6 +8,18 @@ voteBtns.forEach(button => button.addEventListener('click', () => voteJoke(curre
 
 let currentJoke: string = '';
 let jokeVoted: boolean = false;
+
+function getWeather() {
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=e725b8ec710517d47e1e7f0439394bb4')
+    .then(response => response.json())
+    .then(data => {
+        let currentWeather:string = ((data.main.temp - 273.15).toFixed(2)).toString()
+        weather.innerHTML = `${currentWeather}ºC`;
+        console.log(data);
+    });
+}
+
+getWeather();
 
 const options = {
     headers: {
