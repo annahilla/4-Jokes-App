@@ -22,20 +22,20 @@ A Jokes App made using two different APIs to altern jokes. It includes a voting 
 
 3. Install dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 4. Compile TypeScript:
 
-```bash
-npx tsc
-```
+   ```bash
+   npx tsc
+   ```
 
 5. Activate watch mode (for automatic TypeScript compilation on file changes):
 
-```bash
-npx tsc -w
-```
+   ```bash
+   npx tsc -w
+   ```
 
 6. Open `index.html` file with Live Server.
