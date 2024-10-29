@@ -30,6 +30,20 @@ header {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.vote-joke {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-left: 0;
+}
+
+.vote-joke button {
+    border: none;
+    background-color: transparent;
+    font-size: 2rem;
+}
+
 .btn {
     border: 0;
     padding: 1rem 3rem;
