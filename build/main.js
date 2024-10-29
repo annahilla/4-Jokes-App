@@ -7,11 +7,6 @@ var options = {
         'Accept': 'application/json'
     }
 };
-fetch('https://icanhazdadjoke.com/', options)
-    .then(function (response) { return response.json(); })
-    .then(function (data) {
-    jokeOutput.innerHTML = data.joke;
-});
 function getJoke() {
     fetch('https://icanhazdadjoke.com/', options)
         .then(function (response) { return response.json(); })
@@ -19,3 +14,4 @@ function getJoke() {
         jokeOutput.innerHTML = data.joke;
     });
 }
+getJoke();

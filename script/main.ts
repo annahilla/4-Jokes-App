@@ -9,17 +9,12 @@ const options = {
     }
 }
 
-fetch('https://icanhazdadjoke.com/', options)
-  .then(response => response.json())
-  .then(data => {
-    jokeOutput.innerHTML = data.joke;
-  });
-
-  
 function getJoke() {
     fetch('https://icanhazdadjoke.com/', options)
-  .then(response => response.json())
-  .then(data => {
-    jokeOutput.innerHTML = data.joke;
-  });
+        .then(response => response.json())
+        .then(data => {
+            jokeOutput.innerHTML = data.joke;
+        });
 }
+
+getJoke();
