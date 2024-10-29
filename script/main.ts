@@ -2,6 +2,7 @@ const weather = document.getElementById('weather') as HTMLElement;
 const weatherIcon = document.getElementById('weatherIcon') as HTMLElement;
 const jokeOutput= document.getElementById('jokeOutput') as HTMLElement;
 const btn = document.getElementById('btn') as HTMLElement;
+const blob = document.getElementById('blob') as HTMLElement;
 const voteBtns = document.querySelectorAll('.vote-joke-btn');
 
 btn.addEventListener('click', getJoke);
@@ -9,6 +10,7 @@ voteBtns.forEach(button => button.addEventListener('click', () => voteJoke(curre
 
 let currentJoke: string = '';
 let jokeVoted: boolean = false;
+let lastBlobNumber: number = 0;
 
 function getWeather() {
     fetch('https://api.openweathermap.org/data/2.5/weather?q=Barcelona&appid=e725b8ec710517d47e1e7f0439394bb4')
@@ -61,10 +63,21 @@ function getChuckNorrisJoke() {
 
 function getJoke() {
     if(Math.random() < 0.5){
-        getGeneralJoke()
+        getGeneralJoke();
     } else {
         getChuckNorrisJoke();
     }
+
+    let blobNumber: number;
+
+    do {
+        blobNumber = Math.ceil(Math.random() * 5);
+    } while (blobNumber === lastBlobNumber);
+    
+    lastBlobNumber = blobNumber;
+
+    blob.classList.remove(blob.classList[1]);
+    blob.classList.add(`bg-blob-${blobNumber}`);
 }
 
 getJoke();
