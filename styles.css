@@ -54,11 +54,11 @@ header {
     text-align: center;
     width: 25%;
     border-radius: 1rem;
-    gap: 3rem;
+    gap: 1rem;
 }
 
 .joke-container p {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .vote-joke {
